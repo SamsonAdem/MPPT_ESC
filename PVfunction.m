@@ -1,0 +1,66 @@
+function [P,Pmax,Vmax] = PVfunction(T,G)
+ai=0.034/100;                     % Current Tmperature coefficient(ki)
+av=-0.34/100;                     % Voltage Tmperature coefficient(kv)
+Isc_r=3.99;                        % Short-circuit current
+Voc_r=22.1;                       % Opent circuit voltage
+Vm=17.6;                            % Maximum voltage @ STC
+Im=3.69;                          % Maximum current @ STC
+Pm=65;                           % Maximum power   @ STC
+Ns=36;                            % nomber of Cells   
+n=0.9;                            % Diode ideality factor
+
+%% Internal parameters%%%%%%%%%%%%%
+Gr=1000;                          % reference irradiance
+    T=T+273.6;                        % 
+    Tr= 25 +273.6;                    % Temperature reference
+    dT=T-Tr;
+    Isc=Isc_r+ai*dT;                  % variation of Isc with T°
+    Voc=Voc_r+av*dT;                  % variation de Vco with T°
+    q=1.60217646*power(10,-19);       % charge constant
+    K=1.3806503*power(10,-23);        % Boltzmann constant
+    Vt=(Ns*n*K*T/q);                  % Thermal voltage 
+    Eg=1.12;                          % gap energy
+    Iph=Isc*(G/Gr);                   % photo-current
+    Iss=(Isc)/(   exp( Voc/Vt )-1 );  % saturation current
+    Is=Iss*( (T/Tr)^3 ) * exp ( ( (q*Eg)/(n*K) )*((1/Tr)-(1/T)) );%saturation current
+    Rs=0.5;                           % series resistance 
+    Rp=195;                           % parallele resistance
+%%
+I=Iph;             % initial codition
+V=0:(Voc/100):Voc; % input voltage array
+for n1=1:length(V) 
+    
+        
+    for n2=1:20                          % Newton-Raphson loop for calculating output current
+    Vd= (V(n1)+Rs*I);                    % Diode Voltage
+    Id=Is*( exp(Vd/Vt) -1);              % Diode current
+    Ip=Vd/Rp;                            % Parallele resistance Current
+    f=Iph-I-Id-Ip;                       % f(I)=0
+    df=-1-(Is*Rs/Vt)*exp(Vd/Vt)-(Rs/Rp); % f'(I)=0
+    I=I-f/df;% Newton-Raphson formula
+    
+    end % end of Newton-Raphson
+    
+    if I<0
+        I=0;
+    end
+    Ipv(n1)=I;  
+    % Accumulation of output currant
+
+end 
+%%
+ P=Ipv.*V;% Output power
+
+ [Pmax,ii] = max(P); Vmax = V(ii);
+
+% figure(1)
+% hold on
+% plot(V,Ipv)%  
+% grid on
+figure(2)
+title("P-V curve")
+plot(V,P)
+hold on
+grid on
+end
+
