@@ -20,4 +20,9 @@ This repository implements Maximum Power Point Tracking (MPPT) using Extremum Se
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/mppt-esc-matlab.git
+   git clone https://github.com/SamsonAdem/MPPT_ESC.git
+	
+2. **Run the PVfunction.m file**
+	Run the matlab file to initalize essential variables
+3. ** Run the simulink file**
+
