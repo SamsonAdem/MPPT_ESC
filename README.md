@@ -12,9 +12,6 @@ This repository implements Maximum Power Point Tracking (MPPT) using Extremum Se
 
 - **Solar Photovoltaic Simulation:** Simulink model provides a realistic environment for testing and visualizing MPPT algorithm performance in various scenarios.
 
-- **Flexible Configuration:** Easily customize MPPT parameters in MATLAB to match specific solar panel characteristics and environmental conditions.
-
-- **Real-time Monitoring:** Simulink model includes real-time monitoring and visualization for analyzing MPPT algorithm performance.
 
 ## Getting Started
 

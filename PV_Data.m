@@ -14,7 +14,7 @@ x = (0:1:23)';
 
 % Import data for June
 
-June_data = xlsread("June_Temp_Radiation.xlsx");
+June_data = readtable("June_Temp_Radiation.xlsx"); % Change the xlsread to readtable function
 June_temp = June_data(:,2);
 June_Insolation = June_data(:,1);
 
@@ -71,6 +71,7 @@ Pint(isnan(Pint)) = 0;
 Vint(isnan(Vint)) = 0; 
 Ptrue = Pint;
 %%  for test data
-% [~,Pii,Vmaxii] = PVfunction(25,1000);
+% [~,Pii,Vmaxii] = PVfunction(25,1000);  %  run this for testing the data
+% and pv function 
 
    

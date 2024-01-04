@@ -1,3 +1,5 @@
+% Photovolatic function  that is used to plot the power to voltage using
+% irradiance value and the temperature value 
 function [P,Pmax,Vmax] = PVfunction(T,G)
 ai=0.034/100;                     % Current Tmperature coefficient(ki)
 av=-0.34/100;                     % Voltage Tmperature coefficient(kv)
@@ -52,7 +54,7 @@ end
  P=Ipv.*V;% Output power
 
  [Pmax,ii] = max(P); Vmax = V(ii);
-
+% Plot the P-V graph 
 % figure(1)
 % hold on
 % plot(V,Ipv)%  

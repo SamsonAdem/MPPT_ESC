@@ -1,5 +1,5 @@
 clear all;close all;clc
-
+%% Source code to characterize the PV panel
 %% Characterization Of Photovoltaic Panel Using Single Diode Model
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 it=input('Enter the number of curves you aim to plot: 1,2...N: ');
@@ -66,3 +66,6 @@ plot(V,P,'linewidth',N)%
 hold on
 grid on
 end
+
+
+%% This file consists of the PV model. The code you see for the pv function in the simulink file is driven from this  model
