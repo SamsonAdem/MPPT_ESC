@@ -26,5 +26,5 @@ This repository implements Maximum Power Point Tracking (MPPT) using Extremum Se
 	
 2. **Run the PVfunction.m file**
 	Run the matlab file to initalize essential variables
-3. ** Run the simulink file**
+3. **Run the simulink file to see the output**
 
